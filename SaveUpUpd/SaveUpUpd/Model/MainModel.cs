@@ -9,6 +9,6 @@ namespace SaveUpUpd.Model
         public float Geld { get; set; }
         public string Detail { get; set; }
         public string Datum { get; set; }
-
+        public int ID { get; set; }
     }
 }

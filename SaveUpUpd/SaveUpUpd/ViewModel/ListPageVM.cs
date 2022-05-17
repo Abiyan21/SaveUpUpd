@@ -10,6 +10,8 @@ using System.Text;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
+using System.Windows.Input;
 
 namespace SaveUpUpd.ViewModel
 {
@@ -25,6 +27,8 @@ namespace SaveUpUpd.ViewModel
             set { data = value; OnPropertyChanged(); }
         }
 
+        public ICommand Delete { get; }
+
         /// <summary>
         /// Constructor (Liest die Daten von der Datei aus)
         /// </summary>
@@ -35,6 +39,31 @@ namespace SaveUpUpd.ViewModel
 
             List<MainModel> dataList = JsonConvert.DeserializeObject<List<MainModel>>(json);
             data = new ObservableCollection<MainModel>(dataList);
+
+            Delete = new Command<int>(id => { delete(id); });
+
+        }
+
+    
+
+    async void delete(int id)
+        {
+            var choice = await App.Current.MainPage.DisplayAlert("Achtung!", "Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?", "Ja", "Nein");
+            if (choice)
+            {
+                var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
+
+                for (int i = data.Count - 1; i >= 0; i--)
+                {
+                    if(id == data[i].ID)
+                    {
+                        data.Remove(data[i]);
+                    }
+                }
+                string input = JsonConvert.SerializeObject(data);
+                File.WriteAllText(file, input);
+            }
+
         }
     }
 }

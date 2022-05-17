@@ -51,6 +51,16 @@ namespace SaveUpUpd.ViewModel
                 DModel.Datum = value; OnPropertyChanged();
             }
         }
+
+        public int ID
+        {
+            get { return DModel.ID; }
+            set
+            {
+                DModel.ID = value; OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Constructor (Macht ein Object aus MainModel)
         /// </summary>
@@ -139,8 +149,15 @@ namespace SaveUpUpd.ViewModel
                 File.Create(file).Dispose();
             }
 
-
             Datum = DateTime.Now.ToString("dd.MM.yyyy");
+            if (_mainModels.Count == 0)
+            {
+                ID = 0;
+            }
+            else
+            {
+                ID = _mainModels.Count + 1;
+            }
             _mainModels.Add(DModel);
 
             string input = JsonConvert.SerializeObject(_mainModels);
