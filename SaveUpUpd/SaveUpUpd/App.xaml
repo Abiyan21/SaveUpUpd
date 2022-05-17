@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SaveUpUpd.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="FontSize" Value="50"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#CA1F40"/>
+
+            </Style>
+
+            <Style x:Key="Text" TargetType="Label">
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style x:Key="CButton" TargetType="Button">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#CA1F40"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="TextColor" Value="#ECB365"/>
+            </Style>
+
+            <Style x:Key="List" TargetType="Label">
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style x:Key="EntryF" TargetType="Entry">
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="PlaceholderColor" Value="#ECB365"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

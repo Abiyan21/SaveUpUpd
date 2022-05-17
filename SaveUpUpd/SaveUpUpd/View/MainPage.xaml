@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SaveUpUpd.View.MainPage"
+             xmlns:viewModel="clr-namespace:SaveUpUpd.ViewModel"
+             BackgroundColor="#212121">
+    <ContentPage.BindingContext>
+        <viewModel:MainPageVM/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Label Text="Save Up!" Style="{StaticResource Title}"/>
+        <Label Text='Sie können hier eingeben, wie viel Geld Sie gespart haben.' Style="{StaticResource Text}"/>
+        <Entry Text="{Binding Geld}" Keyboard="Numeric" Style="{StaticResource EntryF}"/>
+        <Entry Placeholder="Detail" Text="{Binding Detail}" Style="{StaticResource EntryF}"/>
+        <Button Text="Einfügen" Command="{Binding Einfügen}" Style="{StaticResource CButton}"/>
+        <Button Text="Eintrag Liste" Command="{Binding Einträge}" Style="{StaticResource CButton}"/>
+        <Button Text="Liste Löschen" Command="{Binding Delete}" Style="{StaticResource CButton}"/>
+    </StackLayout>
+
+</ContentPage>
