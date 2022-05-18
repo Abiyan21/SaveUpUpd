@@ -27,7 +27,16 @@ namespace SaveUpUpd.ViewModel
             set { data = value; OnPropertyChanged(); }
         }
 
-        public ICommand Delete { get; }
+        public Command Delete
+        {
+            get
+            {
+                return new Command<int>(id =>
+                {
+                    delete(id);
+                });
+            }
+        }
 
         /// <summary>
         /// Constructor (Liest die Daten von der Datei aus)
@@ -39,9 +48,6 @@ namespace SaveUpUpd.ViewModel
 
             List<MainModel> dataList = JsonConvert.DeserializeObject<List<MainModel>>(json);
             data = new ObservableCollection<MainModel>(dataList);
-
-            Delete = new Command<int>(id => { delete(id); });
-
         }
 
     
