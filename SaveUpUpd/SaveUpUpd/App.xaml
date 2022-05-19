@@ -41,6 +41,21 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
+
+            <Style x:Key="Gesamt" TargetType="Label">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="BackgroundColor" Value="#CA1F40"/>
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+
+            <Style x:Key="DeleteButton" TargetType="Button">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#a31833"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="TextColor" Value="#ECB365"/>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

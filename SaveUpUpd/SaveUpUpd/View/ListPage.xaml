@@ -26,13 +26,13 @@
                                     <Label Text="{Binding Geld, StringFormat='Fr. {0:N}'}" Grid.Column="0" Style="{StaticResource Text}"/>
                                     <Label Text="{Binding Detail}" Grid.Column="1" Style="{StaticResource Text}"/>
                                     <Label Text="{Binding Datum}" Grid.Column="2" Style="{StaticResource Text}"/>
-                                    <Button Text="Delete" Grid.Column="3" Command="{Binding BindingContext.Delete, Source={x:Reference listPage}}" CommandParameter="{Binding ID}"/>
+                                    <Button Text="Delete" Grid.Column="3" Command="{Binding BindingContext.Delete, Source={x:Reference listPage}}" CommandParameter="{Binding ID}" Style="{StaticResource DeleteButton}"/>
                             </Grid>
                             </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="{Binding Gesamt}" Style="{StaticResource Text}"/>
+            <Label Text="{Binding Gesamt, StringFormat='Total: Fr. {0:N}'}" Style="{StaticResource Gesamt}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
