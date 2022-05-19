@@ -60,13 +60,30 @@ namespace SaveUpUpd.ViewModel
                 DModel.ID = value; OnPropertyChanged();
             }
         }
-
+        /*
+        private float gesamtwert;
+        public float Gesamtwert
+        {
+            get { return gesamtwert; } 
+            set 
+            { 
+                gesamtwert = value; OnPropertyChanged(); 
+            } 
+        }
+     */
         /// <summary>
         /// Constructor (Macht ein Object aus MainModel)
         /// </summary>
         public MainPageVM()
         {
             DModel = new MainModel();
+            /*
+            var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
+            var json = File.ReadAllText(file);
+
+            List<MainModel> dataList = JsonConvert.DeserializeObject<List<MainModel>>(json);
+            var data = new ObservableCollection<MainModel>(dataList);
+            */
         }
 
         /// <summary>
@@ -117,14 +134,22 @@ namespace SaveUpUpd.ViewModel
         private async void OpenListPage()
         {
             var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
-            if (new FileInfo(file).Length == 0)
+            if (File.Exists(file))
             {
-                await App.Current.MainPage.DisplayAlert("Liste ist leer!", " Bitte fügen Sie zuerst einen Eintrag ein", "OK");
+                if (new FileInfo(file).Length == 0)
+                {
+                    await App.Current.MainPage.DisplayAlert("Liste ist leer!", " Bitte fügen Sie zuerst einen Eintrag ein", "OK");
+                }
+                else
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
+                }
             }
             else
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
+                File.Create(file).Dispose();
             }
+
         }
 
         /// <summary>
@@ -149,7 +174,7 @@ namespace SaveUpUpd.ViewModel
                 File.Create(file).Dispose();
             }
 
-            Datum = DateTime.Now.ToString("dd.MM.yyyy");
+            Datum = DateTime.Now.ToString("dd.MM.yy");
             if (_mainModels.Count == 0)
             {
                 ID = 0;
@@ -180,5 +205,6 @@ namespace SaveUpUpd.ViewModel
                 File.Create(file).Dispose();
             }
         }
+
     }
 }

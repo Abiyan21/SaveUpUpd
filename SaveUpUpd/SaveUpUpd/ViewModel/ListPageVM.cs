@@ -26,7 +26,15 @@ namespace SaveUpUpd.ViewModel
             get { return data; }
             set { data = value; OnPropertyChanged(); }
         }
-
+        private double gesamt;
+        public double Gesamt
+        {
+            get { return gesamt; }
+            set { gesamt = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// Delete Command (Ruft die Delete Methode auf und gibt die Variable id weiter)
+        /// </summary>
         public Command Delete
         {
             get
@@ -37,7 +45,7 @@ namespace SaveUpUpd.ViewModel
                 });
             }
         }
-
+        
         /// <summary>
         /// Constructor (Liest die Daten von der Datei aus)
         /// </summary>
@@ -48,6 +56,11 @@ namespace SaveUpUpd.ViewModel
 
             List<MainModel> dataList = JsonConvert.DeserializeObject<List<MainModel>>(json);
             data = new ObservableCollection<MainModel>(dataList);
+
+            foreach(var item in data)
+            {
+                gesamt += item.Geld;
+            }
         }
 
     
@@ -58,7 +71,6 @@ namespace SaveUpUpd.ViewModel
             if (choice)
             {
                 var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
-
                 for (int i = data.Count - 1; i >= 0; i--)
                 {
                     if(id == data[i].ID)
@@ -66,10 +78,12 @@ namespace SaveUpUpd.ViewModel
                         data.Remove(data[i]);
                     }
                 }
+                await Application.Current.MainPage.Navigation.PopAsync();
                 string input = JsonConvert.SerializeObject(data);
                 File.WriteAllText(file, input);
             }
 
         }
+
     }
 }
