@@ -47,7 +47,7 @@ namespace SaveUpUpd.ViewModel
         }
         
         /// <summary>
-        /// Constructor (Liest die Daten von der Datei aus)
+        /// Constructor
         /// </summary>
         public ListPageVM()
         {
@@ -63,8 +63,11 @@ namespace SaveUpUpd.ViewModel
             }
         }
 
-    
-
+   
+    /// <summary>
+    /// Löscht den gewählten Eintrag
+    /// </summary>
+    /// <param name="id">ID vom gewählten Eintrag</param>
     async void delete(int id)
         {
             var choice = await App.Current.MainPage.DisplayAlert("Achtung!", "Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?", "Ja", "Nein");

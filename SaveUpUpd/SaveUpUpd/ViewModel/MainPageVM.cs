@@ -60,30 +60,13 @@ namespace SaveUpUpd.ViewModel
                 DModel.ID = value; OnPropertyChanged();
             }
         }
-        /*
-        private float gesamtwert;
-        public float Gesamtwert
-        {
-            get { return gesamtwert; } 
-            set 
-            { 
-                gesamtwert = value; OnPropertyChanged(); 
-            } 
-        }
-     */
+
         /// <summary>
         /// Constructor (Macht ein Object aus MainModel)
         /// </summary>
         public MainPageVM()
         {
             DModel = new MainModel();
-            /*
-            var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
-            var json = File.ReadAllText(file);
-
-            List<MainModel> dataList = JsonConvert.DeserializeObject<List<MainModel>>(json);
-            var data = new ObservableCollection<MainModel>(dataList);
-            */
         }
 
         /// <summary>
@@ -187,14 +170,10 @@ namespace SaveUpUpd.ViewModel
 
             string input = JsonConvert.SerializeObject(_mainModels);
             File.WriteAllText(file, input);
-
-            //var assembly = typeof(ListPageVM).GetTypeInfo().Assembly;
-            //FileStream stream = new FileStream("SaveUp.Resources.eintraege.json", FileMode.OpenOrCreate, FileAccess.Write);
-            //Stream stream = assembly.GetManifestResourceStream("SaveUp.Resources.eintraege.json");
         }
 
         /// <summary>
-        /// DeleteList Methode. Löscht die Datei und erstellt eine neue leere Datei.
+        /// DeleteList Methode. Löscht die Liste und erstellt eine neue leere Datei.
         /// </summary>
         private async void DeleteList()
         {
