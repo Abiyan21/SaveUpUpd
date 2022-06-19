@@ -4,6 +4,7 @@
              x:Class="SaveUpUpd.View.ListPage"
              x:Name="listPage"
              xmlns:viewModel="clr-namespace:SaveUpUpd.ViewModel"
+             xmlns:resx="clr-namespace:SaveUpUpd.Resources;assembly=SaveUpUpd"
              BackgroundColor="#212121">
     <ContentPage.BindingContext>
         <viewModel:ListPageVM/>
@@ -11,8 +12,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding Data}"
-                      HasUnevenRows="True"
-                      >
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                             <ViewCell>
@@ -26,7 +26,7 @@
                                     <Label Text="{Binding Geld, StringFormat='Fr. {0:N}'}" Grid.Column="0" Style="{StaticResource Text}"/>
                                     <Label Text="{Binding Detail}" Grid.Column="1" Style="{StaticResource Text}"/>
                                     <Label Text="{Binding Datum}" Grid.Column="2" Style="{StaticResource Text}"/>
-                                    <Button Text="Delete" Grid.Column="3" Command="{Binding BindingContext.Delete, Source={x:Reference listPage}}" CommandParameter="{Binding ID}" Style="{StaticResource DeleteButton}"/>
+                                    <Button Text="{x:Static resx:Language.deletebutton}" Grid.Column="3" Command="{Binding BindingContext.Delete, Source={x:Reference listPage}}" CommandParameter="{Binding ID}" Style="{StaticResource DeleteButton}"/>
                             </Grid>
                             </ViewCell>
                     </DataTemplate>

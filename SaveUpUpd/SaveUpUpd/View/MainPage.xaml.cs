@@ -14,5 +14,11 @@ namespace SaveUpUpd.View
         {
             InitializeComponent();
         }
+
+        private async void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new LanguagePage());
+
+        }
     }
 }

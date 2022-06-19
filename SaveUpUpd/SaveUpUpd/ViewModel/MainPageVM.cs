@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Xamarin.Forms;
+﻿using Newtonsoft.Json;
 using SaveUpUpd.Model;
-using System.Collections.ObjectModel;
 using SaveUpUpd.View;
-using System.Threading.Tasks;
-using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
-using Newtonsoft.Json;
-using SaveUpUpd;
+using Xamarin.Forms;
 
 namespace SaveUpUpd.ViewModel
 {
@@ -32,7 +26,7 @@ namespace SaveUpUpd.ViewModel
             get { return DModel.Geld; }
             set
             {
-                DModel.Geld = value; OnPropertyChanged(); 
+                DModel.Geld = value; OnPropertyChanged();
             }
         }
         public string Detail
@@ -110,7 +104,7 @@ namespace SaveUpUpd.ViewModel
                 });
             }
         }
-        
+
         /// <summary>
         /// OpenListPage Methode. Navigiert den Benutzer zum ListPage.
         /// </summary>
@@ -119,7 +113,7 @@ namespace SaveUpUpd.ViewModel
             var file = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "eintraege.json");
             if (File.Exists(file))
             {
-                if (new FileInfo(file).Length == 0)
+                if (new FileInfo(file).Length <= 0)
                 {
                     await App.Current.MainPage.DisplayAlert("Liste ist leer!", " Bitte fügen Sie zuerst einen Eintrag ein", "OK");
                 }
@@ -131,6 +125,7 @@ namespace SaveUpUpd.ViewModel
             else
             {
                 File.Create(file).Dispose();
+                await App.Current.MainPage.DisplayAlert("Liste ist leer!", " Bitte fügen Sie zuerst einen Eintrag ein", "OK");
             }
 
         }
@@ -184,6 +179,5 @@ namespace SaveUpUpd.ViewModel
                 File.Create(file).Dispose();
             }
         }
-
     }
 }

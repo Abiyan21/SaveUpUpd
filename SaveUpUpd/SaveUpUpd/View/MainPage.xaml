@@ -3,19 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SaveUpUpd.View.MainPage"
              xmlns:viewModel="clr-namespace:SaveUpUpd.ViewModel"
-             BackgroundColor="#212121">
+             xmlns:resx="clr-namespace:SaveUpUpd.Resources;assembly=SaveUpUpd"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             BackgroundColor="#212121"
+             NavigationPage.HasBackButton="False">
     <ContentPage.BindingContext>
         <viewModel:MainPageVM/>
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{x:Static resx:Language.language}" Clicked="MenuItem_OnClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <StackLayout>
         <Label Text="Save Up!" Style="{StaticResource Title}"/>
-        <Label Text='Sie können hier eingeben, wie viel Geld Sie gespart haben.' Style="{StaticResource Text}"/>
+        <Label Text="{x:Static resx:Language.content}" Style="{StaticResource Text}"/>
         <Entry Text="{Binding Geld}" Keyboard="Numeric" Style="{StaticResource EntryF}"/>
-        <Entry Placeholder="Detail" Text="{Binding Detail}" Style="{StaticResource EntryF}"/>
-        <Button Text="Einfügen" Command="{Binding Einfügen}" Style="{StaticResource CButton}"/>
-        <Button Text="Eintrag Liste" Command="{Binding Einträge}" Style="{StaticResource CButton}"/>
-        <Button Text="Liste Löschen" Command="{Binding Delete}" Style="{StaticResource CButton}"/>
+        <Entry Placeholder="{x:Static resx:Language.description}" Text="{Binding Detail}" Style="{StaticResource EntryF}"/>
+        <Button Text="{x:Static resx:Language.insertbutton}" Command="{Binding Einfügen}" Style="{StaticResource CButton}"/>
+        <Button Text="{x:Static resx:Language.openbutton}" Command="{Binding Einträge}" Style="{StaticResource CButton}"/>
+        <Button Text="{x:Static resx:Language.deleteLbutton}" Command="{Binding Delete}" Style="{StaticResource CButton}"/>
     </StackLayout>
 
 </ContentPage>
